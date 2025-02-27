@@ -1,0 +1,88 @@
+---
+title: "pR2D2ord prior for Ordinal Regression"
+author: "Eric Yanchenko"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pR2D2ord prior for Ordinal Regression}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This package implements the $\mathsf{pR2D2ord}$ prior from *Pseudo-R2D2 for high-dimensional ordinal regression* by Eric Yanchenko. In this vignette, we explain how to use the main functions in this package. Please make sure that 'rstan' is installed before running this package
+
+First, we simulate some ordinal regression data.
+
+```{r}
+    n = 100 # Number of data points
+    p = 5   # Number of covariates
+    K = 3   # Number of response categories
+    
+    # Regression coefficients
+    beta <- c(1, -1, 2, -2, 0)
+
+    # Generate covariates
+    X <- matrix(rnorm(n*p), nrow=n, ncol=p)
+    
+    # Generate latent term
+    eta = X%*%beta
+    z <- rnorm(n, eta, 1)
+    
+    # Set cut-off values
+    tau <- c(-Inf, 0, 2/3, Inf)
+
+    # Find response values
+    Y <- findInterval(z, tau)
+```
+
+
+Next, we find the optimal hyperparameters for the generalized Inverse Gaussian distribution in order to induce $R^2_M\sim\mathsf{Beta}(a,b)$ where $R^2_M$ is McFadden's coefficient-of-determination.
+
+```{r}
+a = 1
+b = 10
+# In practice, this function should be run.
+# hyper <- R2D2ordinal::find_param(a, b, n, K, nreps = 5, no_cores=10)
+hyper = c(0.045, 1.05, 1.05)
+```
+
+
+Given the hyper-parameter values, we can fit the model in *Stan*. Note that since we found the optimal hyper-parameters above, we don't need this function to re-compute them. Otherwise, we would set *a=1,b=10* and leave *hyper=NULL* in the following function call.
+
+```{r}
+out <- R2D2ordinal::ord_r2d2(x=X, y=Y, K=K, hyper=hyper, warmup=500, iter=1500, verbose=FALSE)
+fit <- rstan::extract(out)
+```
+
+Given the posterior samples, we can plot the posterior distribution of $\beta_1$, $\beta_2$ and $W$.
+
+```{r}
+df = dplyr::tibble(W = fit$W,
+            beta1 = fit$beta[,1],
+            beta2 = fit$beta[,2])
+
+ggplot2::ggplot(df, ggplot2::aes(x=beta1))+
+  ggplot2::geom_histogram(bins=25)+
+  ggplot2::geom_vline(xintercept = beta[1], color="red")+
+  ggplot2::xlab("beta1")+
+  ggplot2::ylab("Count")+
+  ggplot2::theme_bw()
+ggplot2::ggplot(df, ggplot2::aes(x=beta2))+
+  ggplot2::geom_histogram(bins=25)+
+  ggplot2::geom_vline(xintercept = beta[2], color="red")+
+  ggplot2::xlab("beta2")+
+  ggplot2::ylab("Count")+
+  ggplot2::theme_bw()
+ggplot2::ggplot(df, ggplot2::aes(x=W))+
+  ggplot2::geom_histogram(bins=25)+
+  ggplot2::xlab("W")+
+  ggplot2::ylab("Count")+
+  ggplot2::theme_bw()
+```
+
