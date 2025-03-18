@@ -1,4 +1,4 @@
-051b1ef15b64127e5529ebb98270fa29 *DESCRIPTION
+7de2ebd548338f89e00bb77c8449d8c7 *DESCRIPTION
 ca224b31655908edbdf67ac032796fd4 *LICENSE
 8cbeafb8f2aed5cb37a02134c822940f *NAMESPACE
 fb2ee80ad7611c89fd8a36c4e9866765 *R/R2D2ordinal-package.R
@@ -10,10 +10,10 @@ fb2ee80ad7611c89fd8a36c4e9866765 *R/R2D2ordinal-package.R
 5fdedca26c8830d7bb06aa1c4a634204 *configure.win
 cac94691fe8de2038dbf1618fad871a2 *inst/doc/overview.R
 de1822d3b43d690d49bd247fe7fc549d *inst/doc/overview.Rmd
-e76dc6a69dd9d912678fa874984f2c86 *inst/doc/overview.html
+d94cfadf547f979247ac9a2dec223875 *inst/doc/overview.html
 855c064dbf8deaff96c8dc8a87169109 *inst/include/stan_meta_header.hpp
 b407a8df8dad33398055379cff955b03 *inst/stan/include/license.stan
-92918a1c1890c5b2e408edc910a85d46 *inst/stan/r2d2ord.stan
+8082fd00779d3493beb4d68fe5739d97 *inst/stan/r2d2ord.stan
 fc7e3675719eac7215568e838aa272e9 *man/R2D2ordinal-package.Rd
 58362a8bdcfce5f3757db818bd39c43c *man/dcut.Rd
 d916b54ebf2c06a7dd6bc7166f28b5b8 *man/find_param.Rd
@@ -23,7 +23,7 @@ d916b54ebf2c06a7dd6bc7166f28b5b8 *man/find_param.Rd
 564c40d0e86bb1e58d039ff240e97b9f *src/Makevars
 e65f20b84c66fdeea5fc5dcd64afcdba *src/RcppExports.cpp
 eefa3a77e05b3e5bce08eb79754903d9 *src/stanExports_r2d2ord.cc
-f37e759beec490bbf982bc5df9c33d95 *src/stanExports_r2d2ord.h
+7f6d256afe27f64ec8972ed9f5366bf3 *src/stanExports_r2d2ord.h
 de1822d3b43d690d49bd247fe7fc549d *vignettes/overview.Rmd
 d41d8cd98f00b204e9800998ecf8427e *vignettes/overview_cache/html/__packages
 24e8ce0882aade7f304432f82f580b68 *vignettes/overview_cache/html/unnamed-chunk-1_7c95b098cad70ee594bcd18876611b95.RData
@@ -38,7 +38,7 @@ c36b20c9b590796f2ac68d4d334037b7 *vignettes/overview_cache/html/unnamed-chunk-3_
 90b4351e436b46574a523a2382ea3d35 *vignettes/overview_cache/html/unnamed-chunk-4_b58eaab8a76f4c601a51331b4b0c61fd.RData
 835fce086e148f3ae46079706a7a3f66 *vignettes/overview_cache/html/unnamed-chunk-4_b58eaab8a76f4c601a51331b4b0c61fd.rdb
 6548291ce804584219fdeb81687e2a9c *vignettes/overview_cache/html/unnamed-chunk-4_b58eaab8a76f4c601a51331b4b0c61fd.rdx
-2dffb0ac0c14cf8a00de50bf81f108dc *vignettes/overview_files/figure-html/unnamed-chunk-4-1.png
-2a9373b906f1da097365cd0186614db8 *vignettes/overview_files/figure-html/unnamed-chunk-4-2.png
-4f04bb77aa9c26221439de4e1ab07b48 *vignettes/overview_files/figure-html/unnamed-chunk-4-3.png
+4915b6912af9d702a5e962848015d218 *vignettes/overview_files/figure-html/unnamed-chunk-4-1.png
+da3bf05928c6985395c370ff9057b486 *vignettes/overview_files/figure-html/unnamed-chunk-4-2.png
+8960b53a1880cf1a81bb60ddf4e1fd00 *vignettes/overview_files/figure-html/unnamed-chunk-4-3.png
 43748a217e189c29f2c5c83fce3484dd *vignettes/overview_files/figure-html/unnamed-chunk-4-4.png

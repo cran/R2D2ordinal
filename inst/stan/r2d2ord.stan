@@ -36,8 +36,10 @@ data {
   int<lower=2> K;
   int<lower=0> N;
   int<lower=0> p;
-  row_vector[p] X[N];
-  int<lower=1,upper=K> Y[N];
+  array[N] row_vector[p] X;
+  array[N] int<lower=1,upper=K> Y;
+  //row_vector[p] X[N]; // deprecated syntax
+  //int<lower=1,upper=K> Y[N];
   row_vector[3] hyper;
 }
 parameters {
