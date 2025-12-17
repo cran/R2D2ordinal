@@ -11,7 +11,8 @@ ord_r2d2(
   a = 1,
   b = 10,
   hyper = NULL,
-  alpha = rep(1, K),
+  alpha = rep(2, K),
+  xi0 = 1,
   nsims = 1000,
   nreps = 5,
   no_cores = 10,
@@ -33,6 +34,8 @@ ord_r2d2(
 \item{hyper}{hyper-parameters for W prior}
 
 \item{alpha}{prior hyper-parameters for prior Dirichlet distribution on response probabilities}
+
+\item{xi0}{prior hyper-parameters for prior Dirichlet distribution of variance allocation parameters phi}
 
 \item{nsims}{number of times to simulate data}
 

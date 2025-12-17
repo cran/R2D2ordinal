@@ -9,7 +9,7 @@
 #' @param log logical; if TRUE, returns log pdf
 #' @return value of pdf at tau
 #' @examples
-#' tau = c(-1,1) # set cut points
+#' tau = c(-Inf, -1, 1, Inf) # set cut points
 #' W = 1 # set value of global variance
 #' alpha = c(1,1,1) #concentration parameters
 #' dcut(tau, W, alpha, log=FALSE)
@@ -17,8 +17,8 @@
 dcut <- function(tau, W, alpha, log=FALSE){
 
   #### Check that the inputs are valid.
-  if((length(tau)+1)!=length(alpha)){
-    stop("The length of tau must be one less than the length of alpha.")
+  if((length(tau)-1)!=length(alpha)){
+    stop("The length of tau must be one more than the length of alpha.")
   }
 
   if(W < 0){
@@ -32,22 +32,30 @@ dcut <- function(tau, W, alpha, log=FALSE){
   if(is.unsorted(tau)){
     stop("tau must be sorted.")
   }
+  
+  # # Compute prior probabilities for PI based on cut-points tau
+  # K = length(tau) + 1 # Number of categories
+  # PI = numeric(K)  # Probability of each category: P(Y=k) = PI[k]
+  # 
+  # PI[1] = stats::pnorm(tau[1], 0, sqrt(1+W))
+  # PI[K] = 1 - stats::pnorm(tau[K-1], 0, sqrt(1+W))
+  # 
+  # for(k in 2:(K-1)){
+  #   PI[k] = stats::pnorm(tau[k], 0, sqrt(1+W)) - stats::pnorm(tau[k-1], 0, sqrt(1+W))
+  # }
 
   # Compute prior probabilities for PI based on cut-points tau
-  K = length(tau)+1 # Number of categories
+  K = length(tau) - 1 # Number of categories
   PI = numeric(K)  # Probability of each category: P(Y=k) = PI[k]
 
-  PI[1] = stats::pnorm(tau[1], 0, sqrt(1+W))
-  PI[K] = 1 - stats::pnorm(tau[K-1], 0, sqrt(1+W))
-
-  for(k in 2:(K-1)){
-    PI[k] = stats::pnorm(tau[k], 0, sqrt(1+W)) - stats::pnorm(tau[k-1], 0, sqrt(1+W))
+  for(k in 1:K){
+    PI[k] = stats::pnorm(tau[k+1], 0, sqrt(1+W)) - stats::pnorm(tau[k], 0, sqrt(1+W))
   }
 
   J = matrix(0, nrow = K-1, ncol = K-1)
 
   for(k in 1:(K-1)){
-    rho = stats::dnorm(tau[k], 0, sqrt(1+W))
+    rho = stats::dnorm(tau[k+1], 0, sqrt(1+W))
     J[k,k]   = rho
     J[k-1,k] = -rho
   }
@@ -76,39 +84,39 @@ dcut <- function(tau, W, alpha, log=FALSE){
 #' K = 3 # number of response categories
 #' Y = sample(1:K, 10, replace=TRUE) # generate responses
 #' W = 1 
-#' tau = c(-1, 1) # set parameter values
+#' tau = c(-Inf, -1, 1, Inf) # set parameter values
 #' llike(Y, W, tau)
 #' 
 #' @export
 llike <- function(Y, W, tau){
   #### Check that the inputs are valid.
   if(sum(Y-floor(Y)==0)!=length(Y)){
-    stop("Y must have integer response.")
+    stop("Y must have integer response.") 
   }
-
+  
   if(min(Y) <= 0){
-    stop("Y must be positive.")
+    stop("Y must be positive.") 
   }
-
-  if(max(Y)> (length(tau)+1)){
-    stop("The length of tau must be at least one less than the maximum of Y")
+  
+  if(max(Y)> (length(tau)-1)){
+    stop("The length of tau must at least one less than the maximum of Y") 
   }
-
+  
   if(W < 0){
-    stop("W must be positive")
+    stop("W must be positive") 
+  }    
+  
+  if(tau[1]!=-Inf || tau[length(tau)]!=Inf){
+    stop("The first and last entries in tau must be negative and positive infinity, respectively.")
   }
-
-
+  
   if(is.unsorted(tau)){
-    stop("tau must be sorted.")
+    stop("tau must be sorted.") 
   }
-
-  tau <- c(-Inf, tau, Inf)
-
+  
   return(
-    sum(log(stats::pnorm(tau[Y+1], 0, sqrt(1+W)) - stats::pnorm(tau[Y], 0, sqrt(1+W))))
+    sum(log(stats::pnorm(tau[Y+1], 0, sqrt(1+W)) - stats::pnorm(tau[Y], 0, sqrt(1+W))))  
   )
-
 }
 
 #' @title Posterior distribution of McFadden's R2
@@ -151,7 +159,7 @@ r2_mc <- function(Y, out){
   K = ncol(D)
 
   apply_fun <- function(d){
-    1 - R2D2ordinal::llike(Y, d[1], d[2:K]) / R2D2ordinal::llike(Y, 0, d[2:K])
+    1 - R2D2ordinal::llike(Y, d[1], c(-Inf, d[2:K], Inf)) / R2D2ordinal::llike(Y, 0, c(-Inf, d[2:K], Inf))
   }
 
   unlist(apply(D, 1, apply_fun))
@@ -178,7 +186,7 @@ r2_mc <- function(Y, out){
 #' find_param(a, b, n, K, no_cores=1)
 #' }
 #' @export
-find_param <- function(a, b, n, K, alpha=rep(1,K), nsims=1000, nreps=5, no_cores=10){
+find_param <- function(a, b, n, K, alpha=rep(2,K), nsims=1000, nreps=5, no_cores=10){
 
   #### Check that the inputs are valid.
   if(a <= 0 || b <= 0){
@@ -226,7 +234,7 @@ find_param <- function(a, b, n, K, alpha=rep(1,K), nsims=1000, nreps=5, no_cores
       tau <- numeric(K-1)
 
       # Transform pi's to tau's
-      for(k in 1:K-1){
+      for(k in 1:(K-1)){
         tau[k] = stats::qnorm(sum(PI[1:k]), 0, sqrt(1+W))
       }
       tau <- c(-Inf, tau, Inf)

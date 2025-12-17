@@ -25,7 +25,7 @@ set.seed(1234)
 K = 3 # number of response categories
 Y = sample(1:K, 10, replace=TRUE) # generate responses
 W = 1 
-tau = c(-1, 1) # set parameter values
+tau = c(-Inf, -1, 1, Inf) # set parameter values
 llike(Y, W, tau)
 
 }

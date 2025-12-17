@@ -9,7 +9,7 @@ find_param(
   b,
   n,
   K,
-  alpha = rep(1, K),
+  alpha = rep(2, K),
   nsims = 1000,
   nreps = 5,
   no_cores = 10

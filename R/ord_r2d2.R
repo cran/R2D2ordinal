@@ -8,6 +8,7 @@
 #' @param b hyper-parameter of prior for R2 ~ Beta(a,b)
 #' @param hyper hyper-parameters for W prior
 #' @param alpha prior hyper-parameters for prior Dirichlet distribution on response probabilities
+#' @param xi0 prior hyper-parameters for prior Dirichlet distribution of variance allocation parameters phi
 #' @param nsims number of times to simulate data
 #' @param nreps number of times to run the algorithm (default = 5)
 #' @param no_cores number of cores to parallelize data-generation process
@@ -34,7 +35,7 @@
 #' }
 #' @export
 ord_r2d2 <- function(x, y, K, a=1, b=10, hyper=NULL,
-                     alpha=rep(1,K), nsims=1000, nreps=5, no_cores=10, progress=FALSE, ...){
+                     alpha=rep(2,K), xi0=1, nsims=1000, nreps=5, no_cores=10, progress=FALSE, ...){
 
   #### Check that the inputs are valid.
   if(length(y)!=nrow(x)){
@@ -49,7 +50,7 @@ ord_r2d2 <- function(x, y, K, a=1, b=10, hyper=NULL,
     hyper = R2D2ordinal::find_param(a, b, n, K, alpha, nsims, nreps, no_cores)
   }
 
-  standata  = list(Y=y, X=x, K=K, N=n, p=p, hyper = hyper)
+  standata  = list(Y=y, X=x, K=K, N=n, p=p, alpha=alpha, xi0=xi0, hyper = hyper)
 
   init=list()
   for(i in 1:4){

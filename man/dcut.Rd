@@ -25,7 +25,7 @@ distribution is induced by a Dirichlet distribution
 on the prior probabilities of the response.
 }
 \examples{
-tau = c(-1,1) # set cut points
+tau = c(-Inf, -1, 1, Inf) # set cut points
 W = 1 # set value of global variance
 alpha = c(1,1,1) #concentration parameters
 dcut(tau, W, alpha, log=FALSE)

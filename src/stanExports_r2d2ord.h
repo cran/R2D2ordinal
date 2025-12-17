@@ -27,35 +27,35 @@ namespace model_r2d2ord_namespace {
 using stan::model::model_base_crtp;
 using namespace stan::math;
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 62> locations_array__ =
+static constexpr std::array<const char*, 65> locations_array__ =
   {" (found before start of program)",
-  " (in 'r2d2ord', line 39, column 2 to column 19)",
-  " (in 'r2d2ord', line 40, column 2 to column 17)",
-  " (in 'r2d2ord', line 41, column 2 to column 18)",
-  " (in 'r2d2ord', line 42, column 2 to column 19)",
-  " (in 'r2d2ord', line 43, column 2 to column 17)",
-  " (in 'r2d2ord', line 46, column 2 to column 47)",
-  " (in 'r2d2ord', line 47, column 16 to column 52)",
-  " (in 'r2d2ord', line 47, column 15 to column 53)",
-  " (in 'r2d2ord', line 47, column 2 to column 53)",
-  " (in 'r2d2ord', line 48, column 2 to column 35)",
-  " (in 'r2d2ord', line 53, column 4 to column 68)",
-  " (in 'r2d2ord', line 54, column 4 to column 34)",
-  " (in 'r2d2ord', line 52, column 7 to line 55, column 3)",
-  " (in 'r2d2ord', line 50, column 4 to column 61)",
-  " (in 'r2d2ord', line 51, column 4 to column 35)",
-  " (in 'r2d2ord', line 49, column 21 to line 52, column 3)",
-  " (in 'r2d2ord', line 49, column 2 to line 55, column 3)",
-  " (in 'r2d2ord', line 57, column 11 to column 12)",
-  " (in 'r2d2ord', line 57, column 4 to column 20)",
-  " (in 'r2d2ord', line 58, column 4 to column 27)",
-  " (in 'r2d2ord', line 59, column 4 to column 33)",
-  " (in 'r2d2ord', line 61, column 6 to column 57)",
-  " (in 'r2d2ord', line 60, column 4 to line 61, column 57)",
-  " (in 'r2d2ord', line 62, column 4 to column 37)",
-  " (in 'r2d2ord', line 63, column 4 to column 30)",
-  " (in 'r2d2ord', line 56, column 17 to line 64, column 3)",
-  " (in 'r2d2ord', line 56, column 2 to line 64, column 3)",
+  " (in 'r2d2ord', line 41, column 2 to column 19)",
+  " (in 'r2d2ord', line 42, column 2 to column 17)",
+  " (in 'r2d2ord', line 43, column 2 to column 18)",
+  " (in 'r2d2ord', line 44, column 2 to column 19)",
+  " (in 'r2d2ord', line 45, column 2 to column 17)",
+  " (in 'r2d2ord', line 48, column 2 to column 36)",
+  " (in 'r2d2ord', line 49, column 16 to column 52)",
+  " (in 'r2d2ord', line 49, column 15 to column 53)",
+  " (in 'r2d2ord', line 49, column 2 to column 53)",
+  " (in 'r2d2ord', line 50, column 2 to column 37)",
+  " (in 'r2d2ord', line 55, column 4 to column 68)",
+  " (in 'r2d2ord', line 56, column 4 to column 34)",
+  " (in 'r2d2ord', line 54, column 7 to line 57, column 3)",
+  " (in 'r2d2ord', line 52, column 4 to column 61)",
+  " (in 'r2d2ord', line 53, column 4 to column 35)",
+  " (in 'r2d2ord', line 51, column 21 to line 54, column 3)",
+  " (in 'r2d2ord', line 51, column 2 to line 57, column 3)",
+  " (in 'r2d2ord', line 59, column 11 to column 12)",
+  " (in 'r2d2ord', line 59, column 4 to column 20)",
+  " (in 'r2d2ord', line 60, column 4 to column 27)",
+  " (in 'r2d2ord', line 61, column 4 to column 33)",
+  " (in 'r2d2ord', line 63, column 6 to column 57)",
+  " (in 'r2d2ord', line 62, column 4 to line 63, column 57)",
+  " (in 'r2d2ord', line 64, column 4 to column 37)",
+  " (in 'r2d2ord', line 65, column 4 to column 30)",
+  " (in 'r2d2ord', line 58, column 17 to line 66, column 3)",
+  " (in 'r2d2ord', line 58, column 2 to line 66, column 3)",
   " (in 'r2d2ord', line 29, column 2 to column 17)",
   " (in 'r2d2ord', line 30, column 2 to column 17)",
   " (in 'r2d2ord', line 31, column 2 to column 17)",
@@ -65,9 +65,12 @@ static constexpr std::array<const char*, 62> locations_array__ =
   " (in 'r2d2ord', line 33, column 8 to column 9)",
   " (in 'r2d2ord', line 33, column 2 to column 34)",
   " (in 'r2d2ord', line 36, column 2 to column 22)",
-  " (in 'r2d2ord', line 39, column 10 to column 13)",
-  " (in 'r2d2ord', line 40, column 9 to column 10)",
-  " (in 'r2d2ord', line 43, column 10 to column 11)",
+  " (in 'r2d2ord', line 37, column 9 to column 10)",
+  " (in 'r2d2ord', line 37, column 2 to column 18)",
+  " (in 'r2d2ord', line 38, column 2 to column 20)",
+  " (in 'r2d2ord', line 41, column 10 to column 13)",
+  " (in 'r2d2ord', line 42, column 9 to column 10)",
+  " (in 'r2d2ord', line 45, column 10 to column 11)",
   " (in 'r2d2ord', line 4, column 4 to column 34)",
   " (in 'r2d2ord', line 5, column 11 to column 12)",
   " (in 'r2d2ord', line 5, column 4 to column 17)",
@@ -125,30 +128,30 @@ induced_dirichlet_lpdf(const T0__& tau_arg__, const T1__& W, const T2__&
   (void) DUMMY_VAR__;
   try {
     int K = std::numeric_limits<int>::min();
-    current_statement__ = 40;
+    current_statement__ = 43;
     K = (stan::math::num_elements(tau) + 1);
-    current_statement__ = 41;
+    current_statement__ = 44;
     stan::math::validate_non_negative_index("PI", "K", K);
     Eigen::Matrix<local_scalar_t__,-1,1> PI =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(K, DUMMY_VAR__);
-    current_statement__ = 43;
+    current_statement__ = 46;
     stan::math::validate_non_negative_index("J", "K", K);
-    current_statement__ = 44;
+    current_statement__ = 47;
     stan::math::validate_non_negative_index("J", "K", K);
     Eigen::Matrix<local_scalar_t__,-1,-1> J =
       Eigen::Matrix<local_scalar_t__,-1,-1>::Constant(K, K, DUMMY_VAR__);
-    current_statement__ = 45;
+    current_statement__ = 48;
     stan::model::assign(J, stan::math::rep_matrix(0, K, K),
       "assigning variable J");
-    current_statement__ = 46;
+    current_statement__ = 49;
     stan::model::assign(PI,
       stan::math::normal_cdf(
         stan::model::rvalue(tau, "tau", stan::model::index_uni(1)), 0,
         stan::math::sqrt((1 + W))), "assigning variable PI",
       stan::model::index_uni(1));
-    current_statement__ = 48;
+    current_statement__ = 51;
     for (int k = 2; k <= (K - 1); ++k) {
-      current_statement__ = 47;
+      current_statement__ = 50;
       stan::model::assign(PI,
         (stan::math::normal_cdf(
            stan::model::rvalue(tau, "tau", stan::model::index_uni(k)), 0,
@@ -158,35 +161,35 @@ induced_dirichlet_lpdf(const T0__& tau_arg__, const T1__& W, const T2__&
           0, stan::math::sqrt((1 + W)))), "assigning variable PI",
         stan::model::index_uni(k));
     }
-    current_statement__ = 49;
+    current_statement__ = 52;
     stan::model::assign(PI, (1 -
       stan::math::normal_cdf(
         stan::model::rvalue(tau, "tau", stan::model::index_uni((K - 1))), 0,
         stan::math::sqrt((1 + W)))), "assigning variable PI",
       stan::model::index_uni(K));
-    current_statement__ = 51;
+    current_statement__ = 54;
     for (int k = 1; k <= K; ++k) {
-      current_statement__ = 50;
+      current_statement__ = 53;
       stan::model::assign(J, 1, "assigning variable J",
         stan::model::index_uni(k), stan::model::index_uni(1));
     }
-    current_statement__ = 56;
+    current_statement__ = 59;
     for (int k = 2; k <= K; ++k) {
       local_scalar_t__ rho = DUMMY_VAR__;
-      current_statement__ = 52;
+      current_statement__ = 55;
       rho = stan::math::exp(
               stan::math::normal_lpdf<false>(
                 stan::model::rvalue(tau, "tau",
                   stan::model::index_uni((k - 1))), 0,
                 stan::math::sqrt((1 + W))));
-      current_statement__ = 53;
+      current_statement__ = 56;
       stan::model::assign(J, -rho, "assigning variable J",
         stan::model::index_uni(k), stan::model::index_uni(k));
-      current_statement__ = 54;
+      current_statement__ = 57;
       stan::model::assign(J, rho, "assigning variable J",
         stan::model::index_uni((k - 1)), stan::model::index_uni(k));
     }
-    current_statement__ = 57;
+    current_statement__ = 60;
     return (stan::math::dirichlet_lpdf<false>(PI, alpha) +
            stan::math::log_determinant(J));
   } catch (const std::exception& e) {
@@ -207,12 +210,12 @@ inv_gauss_lpdf(const T0__& x, const T1__& mu, const T2__& lambda,
   (void) DUMMY_VAR__;
   try {
     local_scalar_t__ lpdf = DUMMY_VAR__;
-    current_statement__ = 59;
+    current_statement__ = 62;
     lpdf = ((((0.5 * stan::math::log(lambda)) - (0.5 *
       stan::math::log((2 * stan::math::pi())))) - (1.5 * stan::math::log(x)))
       - ((lambda * stan::math::pow((x - mu), 2)) / ((2 *
       stan::math::pow(mu, 2)) * x)));
-    current_statement__ = 60;
+    current_statement__ = 63;
     return lpdf;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -227,8 +230,11 @@ private:
   std::vector<Eigen::Matrix<double,1,-1>> X;
   std::vector<int> Y;
   Eigen::Matrix<double,1,-1> hyper_data__;
+  Eigen::Matrix<double,-1,1> alpha_data__;
+  double xi0;
   int tau_1dim__;
   Eigen::Map<Eigen::Matrix<double,1,-1>> hyper{nullptr, 0};
+  Eigen::Map<Eigen::Matrix<double,-1,1>> alpha{nullptr, 0};
 public:
   ~model_r2d2ord() {}
   model_r2d2ord(stan::io::var_context& context__, unsigned int
@@ -338,14 +344,46 @@ public:
         }
       }
       current_statement__ = 37;
-      tau_1dim__ = std::numeric_limits<int>::min();
-      current_statement__ = 37;
-      tau_1dim__ = (K - 1);
-      current_statement__ = 37;
-      stan::math::validate_non_negative_index("tau", "K - 1", tau_1dim__);
+      stan::math::validate_non_negative_index("alpha", "K", K);
       current_statement__ = 38;
-      stan::math::validate_non_negative_index("beta", "p", p);
+      context__.validate_dims("data initialization", "alpha", "double",
+        std::vector<size_t>{static_cast<size_t>(K)});
+      alpha_data__ = Eigen::Matrix<double,-1,1>::Constant(K,
+                       std::numeric_limits<double>::quiet_NaN());
+      new (&alpha)
+        Eigen::Map<Eigen::Matrix<double,-1,1>>(alpha_data__.data(), K);
+      {
+        std::vector<local_scalar_t__> alpha_flat__;
+        current_statement__ = 38;
+        alpha_flat__ = context__.vals_r("alpha");
+        current_statement__ = 38;
+        pos__ = 1;
+        current_statement__ = 38;
+        for (int sym1__ = 1; sym1__ <= K; ++sym1__) {
+          current_statement__ = 38;
+          stan::model::assign(alpha, alpha_flat__[(pos__ - 1)],
+            "assigning variable alpha", stan::model::index_uni(sym1__));
+          current_statement__ = 38;
+          pos__ = (pos__ + 1);
+        }
+      }
       current_statement__ = 39;
+      context__.validate_dims("data initialization", "xi0", "double",
+        std::vector<size_t>{});
+      xi0 = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 39;
+      xi0 = context__.vals_r("xi0")[(1 - 1)];
+      current_statement__ = 39;
+      stan::math::check_greater_or_equal(function__, "xi0", xi0, 0);
+      current_statement__ = 40;
+      tau_1dim__ = std::numeric_limits<int>::min();
+      current_statement__ = 40;
+      tau_1dim__ = (K - 1);
+      current_statement__ = 40;
+      stan::math::validate_non_negative_index("tau", "K - 1", tau_1dim__);
+      current_statement__ = 41;
+      stan::math::validate_non_negative_index("beta", "p", p);
+      current_statement__ = 42;
       stan::math::validate_positive_index("phi", "p", p);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -405,8 +443,8 @@ public:
               Eigen::Matrix<local_scalar_t__,-1,1>, jacobian__>(lp__, p);
       {
         current_statement__ = 6;
-        lp_accum__.add(induced_dirichlet_lpdf<propto__>(tau, W,
-                         stan::math::rep_vector(2, K), pstream__));
+        lp_accum__.add(induced_dirichlet_lpdf<propto__>(tau, W, alpha,
+                         pstream__));
         current_statement__ = 9;
         for (int j = 1; j <= p; ++j) {
           current_statement__ = 7;
@@ -419,7 +457,7 @@ public:
         }
         current_statement__ = 10;
         lp_accum__.add(stan::math::dirichlet_lpdf<propto__>(phi,
-                         stan::math::rep_vector(1, p)));
+                         stan::math::rep_vector(xi0, p)));
         current_statement__ = 17;
         if (stan::math::logical_lt(
               stan::model::rvalue(hyper, "hyper", stan::model::index_uni(1)),

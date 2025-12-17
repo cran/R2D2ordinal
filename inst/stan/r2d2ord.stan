@@ -41,6 +41,8 @@ data {
   //row_vector[p] X[N]; // deprecated syntax
   //int<lower=1,upper=K> Y[N];
   row_vector[3] hyper;
+  vector[K] alpha;
+  real<lower=0> xi0;
 }
 parameters {
   ordered[K-1] tau;    // Internal cutpoints
@@ -50,9 +52,9 @@ parameters {
   simplex[p] phi;      // Variance allocation parameters
 }
 model {
-  tau ~ induced_dirichlet(W, rep_vector(2, K));
+  tau ~ induced_dirichlet(W, alpha);
   for(j in 1:p){beta[j] ~ normal(0, sqrt(phi[j]*W));}
-  phi ~ dirichlet(rep_vector(1,p));
+  phi ~ dirichlet(rep_vector(xi0,p));
 
   if(hyper[1] < -0.5){
     W  ~ inv_gauss(sqrt(hyper[3]/(hyper[2]+2*xi)), hyper[3]);
